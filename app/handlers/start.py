@@ -18,6 +18,7 @@ class Start_Bot():
     async def set_commands(self):
         commands = [
             BotCommand(command="/start", description="Перезапуск"),
+            BotCommand(command="/info", description="Помощь")
         ]
         await self.bot.set_my_commands(commands)
 
@@ -58,6 +59,16 @@ class Start_Bot():
             await state.update_data(mess=[message.chat.id, mess.message_id])
             await self.RegStates.registration.set()
 
+    async def help(self, message: types.Message):
+        if str(message.chat.id) in self.config.ADMINS:
+            await message.answer('https://teletype.in/@ca_bot/spXLNWxGRWt')
+        if self.db_prov.get_student_id(message.chat.id):
+            await message.answer('https://teletype.in/@ca_bot/7nkyd_5IPWX')
+        elif self.db_prov.get_teacher_id(message.chat.id):
+            await message.answer('https://teletype.in/@ca_bot/AgvOJ1_aQX8')
+
+
 
     def register_handlers_start(self, dp: Dispatcher):
         dp.register_message_handler(self.cmd_start, commands="start", state="*")
+        dp.register_message_handler(self.help, commands="help", state='*')
