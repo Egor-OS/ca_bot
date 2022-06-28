@@ -411,8 +411,8 @@ class StudentPanel():
                     await message.answer('❕❔ Ключ совпадает с настоящим!')
             else:
                 await message.answer('❌ Неподходящий формат ключа!')
-    
-    
+
+
     def register_handlers_student(self, dp: Dispatcher):
         dp.register_message_handler(self.stud_menu, state=self.StudStates.stud_menu)
         dp.register_message_handler(self.stud_doc, state=self.StudStates.stud_doc)

@@ -318,7 +318,7 @@ class AdminPanel():
         if message.text == '⬅ Назад':
             keyboard.add('🗑 Удалить студента')
             keyboard.add('⬅ Назад','🏠 На главную')
-            stud_info = data['list_stud'][data['choices_stud']]
+            stud_info = data['list_stud'][data['choice_stud']]
             await message.answer(
                 f'Фамилия: <b>{stud_info["l_name"]}</b> \nИмя: <b>{stud_info["f_name"]}</b> \nОтчество: <b>{stud_info["m_name"]}</b> \nTelegram-id: <b>{stud_info["tg_id"]}</b>',
                 parse_mode=types.ParseMode.HTML, reply_markup=keyboard)

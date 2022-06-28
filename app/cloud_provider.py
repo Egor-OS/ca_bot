@@ -1,3 +1,4 @@
+import datetime
 import json
 import os.path
 
@@ -28,22 +29,13 @@ class CloudMail:
         else:
             return True
 
-    # def del_path(self, path):
-    #     path = path.replace('\\','/')
-    #     tree = self.CM.api.folder(path)
-    #     print(tree)
-    #     # if (tree['body']['count']['files'] == 0) and (tree['body']['count']['folders'] == 0):
-    #     #     self.CM.api.file.remove(path)
-    #     # else:
-    #     #     print('Дирректория не пуста')
-    #     print(self.CM.api.file.remove(path))
-
     def del_file(self):
         list_del = self.db_prov.db.unsent_files.find({'operation': 'DEL'})
         for i in list_del:
             path = self.config.PATH_CLOUD + i['path'].replace('\\', '/')
             if self.CM.api.file.remove(path)['status'] == 200:
                 self.db_prov.db.unsent_files.delete_one({'_id': i["_id"]})
+
 
 
     def start_upload(self):

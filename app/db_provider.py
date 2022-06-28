@@ -133,6 +133,9 @@ class DB_provider:
         )
 
     def check_voucher(self, voucher):
+        d_now = datetime.datetime.today()
+        date_ = d_now - datetime.timedelta(days=self.config.EXP_VOUCH * 7)
+        self.db.vouchers.remove({"date": {"$lt": date_}})
         res = self.db.vouchers.find_one({"code":voucher})
         return res
 

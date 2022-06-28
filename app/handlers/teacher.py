@@ -652,8 +652,7 @@ class TeacherPanel():
                     await message.answer('❕❔ Ключ совпадает с настоящим!')
             else:
                 await message.answer('❌ Неподходящий формат ключа!')
-    
-    
+
     
     def register_handlers_teacher(self, dp: Dispatcher):
         dp.register_message_handler(self.teach_menu, state=self.TeachStates.teach_menu)

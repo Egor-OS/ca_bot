@@ -59,7 +59,7 @@ class Start_Bot():
             await state.update_data(mess=[message.chat.id, mess.message_id])
             await self.RegStates.registration.set()
 
-    async def help(self, message: types.Message):
+    async def help_(self, message: types.Message):
         if str(message.chat.id) in self.config.ADMINS:
             await message.answer('https://teletype.in/@ca_bot/spXLNWxGRWt')
         if self.db_prov.get_student_id(message.chat.id):
@@ -71,4 +71,4 @@ class Start_Bot():
 
     def register_handlers_start(self, dp: Dispatcher):
         dp.register_message_handler(self.cmd_start, commands="start", state="*")
-        dp.register_message_handler(self.help, commands="help", state='*')
+        dp.register_message_handler(self.help_, commands="info", state='*')
