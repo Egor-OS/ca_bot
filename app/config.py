@@ -13,6 +13,7 @@ class Config:
     PORT: int
     DB_NAME: str
     TOKEN: str
+    EXP_VOUCH: int
 
 
 def load_config(path: str):
@@ -28,7 +29,8 @@ def load_config(path: str):
         HOST = conf['HOST'],
         PORT= int(conf['PORT']),
         DB_NAME = conf['DB_NAME'],
-        TOKEN = conf['TOKEN']
+        TOKEN = conf['TOKEN'],
+        EXP_VOUCH = int(conf['EXP_VOUCH'])
     )
 
 
